@@ -1,0 +1,101 @@
+# Tree Data Structures Documentation
+
+## 1. Binary Tree
+- **Definition**: A hierarchical structure where each node has at most two children, referred to as the left and right child.
+- **Properties**: No specific ordering among nodes; can be unbalanced.
+- **Use Cases**: General purpose for representing hierarchical data, such as organization charts.
+
+## 2. Full Binary Tree
+- **Definition**: A binary tree in which every node other than the leaves has two children.
+- **Properties**: Each level of the tree is fully filled except possibly the last level.
+- **Use Cases**: Used in applications requiring complete utilization of nodes.
+
+## 3. Complete Binary Tree
+- **Definition**: A binary tree in which all levels, except possibly the last, are fully filled, and all nodes are as far left as possible.
+- **Properties**: Efficient for storing data in an array due to its compact nature.
+- **Use Cases**: Heaps, particularly in implementing binary heaps.
+
+## 4. Perfect Binary Tree
+- **Definition**: A binary tree in which all internal nodes have two children and all leaf nodes are at the same level.
+- **Properties**: Number of leaves is 2^h, where h is the height of the tree.
+- **Use Cases**: Balanced structures in algorithm design and memory allocation.
+
+## 5. Balanced Binary Tree
+- **Definition**: A binary tree where the height of the left and right subtrees of any node differ by no more than one.
+- **Properties**: Ensures efficient operations (O(log n) time complexity for insertions and deletions).
+- **Use Cases**: Self-balancing trees like AVL and Red-Black Trees.
+
+## 6. Degenerate (or Pathological) Tree
+- **Definition**: A binary tree in which each parent node has only one child, making it effectively a linked list.
+- **Properties**: Height is equal to the number of nodes, leading to O(n) operations.
+- **Use Cases**: Rarely used in practice; primarily a theoretical example.
+
+## 7. Skewed Binary Tree
+- **Definition**: A binary tree that is skewed to one side, either left or right, where each node has only one child.
+- **Properties**: Similar to degenerate trees; can be left-skewed or right-skewed.
+- **Use Cases**: Data that naturally forms a linear structure.
+
+## 8. Binary Search Tree (BST)
+- **Definition**: A binary tree where each node follows the property that the left child is less than the parent and the right child is greater.
+- **Properties**: Allows efficient searching, insertion, and deletion operations.
+- **Use Cases**: Dynamic set operations, maintaining sorted data.
+
+## 9. AVL Tree
+- **Definition**: A self-balancing binary search tree where the difference in heights between left and right subtrees is at most one.
+- **Properties**: Ensures O(log n) time complexity for search, insertion, and deletion.
+- **Use Cases**: Applications requiring frequent insertions and deletions while maintaining sorted order.
+
+## 10. Red-Black Tree
+- **Definition**: A balanced binary search tree with an additional property that ensures the tree remains approximately balanced during insertions and deletions using color properties.
+- **Properties**: Guarantees O(log n) time complexity for all operations; the longest path from root to leaf is no more than twice the shortest path.
+- **Use Cases**: Used in associative containers (like std::map in C++ STL).
+
+## 11. B-Tree
+- **Definition**: A self-balancing tree data structure that maintains sorted data and allows searches, sequential access, insertions, and deletions in logarithmic time.
+- **Properties**: Each node can have multiple children and keys, allowing it to maintain balance and minimize disk I/O.
+- **Use Cases**: Databases and file systems for efficient data retrieval.
+
+## 12. B+ Tree
+- **Definition**: An extension of the B-Tree that maintains all data in the leaf nodes and only keys in internal nodes.
+- **Properties**: Offers improved range queries and allows for efficient data retrieval.
+- **Use Cases**: Often used in databases and file systems.
+
+## 13. N-ary Tree
+- **Definition**: A tree in which a node can have at most N children.
+- **Properties**: Generalization of a binary tree; height and breadth can vary significantly.
+- **Use Cases**: Representing multi-way structures, such as file systems.
+
+## 14. Trie (Prefix Tree)
+- **Definition**: A special tree used to store associative data structures, where the keys are usually strings.
+- **Properties**: Each edge represents a character of the string; common prefixes are stored only once.
+- **Use Cases**: Auto-completion, spell checking, and IP routing.
+
+## 15. Segment Tree
+- **Definition**: A binary tree used for storing intervals or segments; allows efficient querying of range sums or minimum/maximum in an array.
+- **Properties**: Each node represents an interval, and it can be used to update and query ranges efficiently.
+- **Use Cases**: Range query problems, such as finding the sum or minimum of a range.
+
+## 16. Fenwick Tree (Binary Indexed Tree)
+- **Definition**: A data structure that provides efficient methods for cumulative frequency tables.
+- **Properties**: Supports updates and prefix sum queries in logarithmic time.
+- **Use Cases**: Used in applications involving frequency tables, such as counting inversions in an array.
+
+## 17. Splay Tree
+- **Definition**: A self-adjusting binary search tree that performs splaying (moving a accessed node to the root).
+- **Properties**: Guarantees amortized O(log n) time for access operations.
+- **Use Cases**: Access patterns with locality, often in caches and online algorithms.
+
+## 18. Threaded Binary Tree
+- **Definition**: A binary tree in which null pointers are replaced with pointers to the in-order predecessor or successor, allowing for in-order traversal without recursion.
+- **Properties**: Enables faster traversal and efficient use of memory.
+- **Use Cases**: Applications requiring frequent in-order traversals.
+
+## 19. Patricia Tree
+- **Definition**: A space-optimized trie where nodes with only one child are merged with their parent, reducing space.
+- **Properties**: Efficiently represents a set of strings, optimizing for both space and search time.
+- **Use Cases**: Network routing protocols and IP address storage.
+
+## 20. K-D Tree (k-dimensional tree)
+- **Definition**: A binary tree used for organizing points in a k-dimensional space, where each node is a k-dimensional point.
+- **Properties**: Facilitates efficient range searches and nearest neighbor searches.
+- **Use Cases**: Multi-dimensional search applications, such as geographical mapping and computer graphics.

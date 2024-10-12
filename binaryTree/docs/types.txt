@@ -1,0 +1,20 @@
+Binary Tree
+Full Binary Tree
+Complete Binary Tree
+Perfect Binary Tree
+Balanced Binary Tree
+Degenerate (or pathological) Tree
+Skewed Binary Tree
+Binary Search Tree (BST)
+AVL Tree
+Red-Black Tree
+B-Tree
+B+ Tree
+N-ary Tree
+Trie (Prefix Tree)
+Segment Tree
+Fenwick Tree (Binary Indexed Tree)
+Splay Tree
+Threaded Binary Tree
+Patricia Tree
+K-D Tree (k-dimensional tree)
