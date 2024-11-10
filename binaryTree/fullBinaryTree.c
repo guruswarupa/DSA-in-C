@@ -20,55 +20,43 @@ TreeNode* createNode(int data) {
     return newNode;
 }
 
-// Function to insert a node in the binary tree as a full binary tree
+// Function to insert a node in a full binary tree
 TreeNode* insert(TreeNode* root, int data) {
+    // If the tree is empty, create the root node
     if (root == NULL) {
         return createNode(data);
     }
 
-    // Use a queue to insert the node in level order
-    TreeNode** queue = (TreeNode**)malloc(100 * sizeof(TreeNode*)); // Allocate memory for the queue
+    // Use a queue for level order insertion
+    TreeNode** queue = (TreeNode**)malloc(100 * sizeof(TreeNode*));  // Allocating memory for the queue
     int front = 0, rear = 0;
     queue[rear++] = root;
 
-    // Traverse the tree in level order
     while (front < rear) {
         TreeNode* current = queue[front++];
-        
-        // Check left child
-        if (current->left != NULL) {
-            queue[rear++] = current->left;
-        } else {
-            current->left = createNode(data);
-            free(queue); // Free the queue memory before returning
-            return root;
-        }
 
-        // Check right child
-        if (current->right != NULL) {
-            queue[rear++] = current->right;
-        } else {
-            current->right = createNode(data);
-            free(queue); // Free the queue memory before returning
+        // Check if current node has no left child, if so, insert here
+        if (current->left == NULL) {
+            current->left = createNode(data);
+            free(queue);  // Free the queue after insertion
             return root;
         }
+        queue[rear++] = current->left;  // Add left child to queue
+
+        // Check if current node has no right child, if so, insert here
+        if (current->right == NULL) {
+            current->right = createNode(data);
+            free(queue);  // Free the queue after insertion
+            return root;
+        }
+        queue[rear++] = current->right;  // Add right child to queue
     }
     
-    free(queue); // Free the queue memory if no position found
+    free(queue);  // Free the queue memory
     return root;
 }
 
-// Function to search for a node in the binary tree
-TreeNode* search(TreeNode* root, int data) {
-    if (root == NULL || root->data == data) {
-        return root;
-    }
-    TreeNode* found = search(root->left, data);
-    if (found) return found;
-    return search(root->right, data);
-}
-
-// Function for inorder traversal
+// Function to perform inorder traversal
 void inorder(TreeNode* root) {
     if (root != NULL) {
         inorder(root->left);
@@ -77,7 +65,7 @@ void inorder(TreeNode* root) {
     }
 }
 
-// Function for preorder traversal
+// Function to perform preorder traversal
 void preorder(TreeNode* root) {
     if (root != NULL) {
         printf("%d ", root->data);
@@ -86,50 +74,13 @@ void preorder(TreeNode* root) {
     }
 }
 
-// Function for postorder traversal
+// Function to perform postorder traversal
 void postorder(TreeNode* root) {
     if (root != NULL) {
         postorder(root->left);
         postorder(root->right);
         printf("%d ", root->data);
     }
-}
-
-// Function to find the minimum value node
-TreeNode* findMin(TreeNode* root) {
-    while (root->left != NULL) {
-        root = root->left;
-    }
-    return root;
-}
-
-// Function to delete a node from the binary tree
-TreeNode* deleteNode(TreeNode* root, int data) {
-    if (root == NULL) return root;
-
-    // Traverse the tree
-    if (data < root->data) {
-        root->left = deleteNode(root->left, data);
-    } else if (data > root->data) {
-        root->right = deleteNode(root->right, data);
-    } else {
-        // Node with only one child or no child
-        if (root->left == NULL) {
-            TreeNode* temp = root->right;
-            free(root);
-            return temp;
-        } else if (root->right == NULL) {
-            TreeNode* temp = root->left;
-            free(root);
-            return temp;
-        }
-
-        // Node with two children: Get the inorder successor (smallest in the right subtree)
-        TreeNode* temp = findMin(root->right);
-        root->data = temp->data; // Copy the inorder successor's content to this node
-        root->right = deleteNode(root->right, temp->data); // Delete the inorder successor
-    }
-    return root;
 }
 
 // Function to display the tree graphically
@@ -148,6 +99,7 @@ void displayTree(TreeNode* root, int space) {
     for (int i = COUNT; i < space; i++)
         printf(" ");
     printf("%d", root->data);
+
     // Process left child
     displayTree(root->left, space);
 }
@@ -165,52 +117,41 @@ void freeTree(TreeNode* root) {
 int main() {
     TreeNode* root = NULL;
 
-    // Insert nodes into the binary tree
+    // Insert nodes into the full binary tree
     root = insert(root, 50);
-    insert(root, 30);
-    insert(root, 20);
-    insert(root, 10);
-    insert(root, 51);
-    insert(root, 45);
-    insert(root, 35);
-    insert(root, 49);
-    insert(root, 40);
-    insert(root, 70);
-    insert(root, 60);
-    insert(root, 80);
-
-    printf("Inorder traversal of the binary tree: ");
+    root = insert(root, 30);
+    root = insert(root, 20);
+    root = insert(root, 10);
+    root = insert(root, 51);
+    root = insert(root, 45);
+    root = insert(root, 35);
+    root = insert(root, 49);
+    root = insert(root, 40);
+    root = insert(root, 70);
+    root = insert(root, 60);
+    root = insert(root, 80);
+    root = insert(root, 90);
+    // Inorder traversal of the binary tree
+    printf("Inorder traversal: ");
     inorder(root);
     printf("\n");
 
-    printf("Preorder traversal of the binary tree: ");
+    // Preorder traversal of the binary tree
+    printf("Preorder traversal: ");
     preorder(root);
     printf("\n");
 
-    printf("Postorder traversal of the binary tree: ");
+    // Postorder traversal of the binary tree
+    printf("Postorder traversal: ");
     postorder(root);
     printf("\n");
 
     // Display the tree graphically
-    printf("\nGraphical representation of the binary tree:\n");
+    printf("\nGraphical representation of the tree:\n");
     displayTree(root, 0);
-
-    // Search for a node
-    int key = 4;
-    TreeNode* found = search(root, key);
-    if (found != NULL) {
-        printf("\nKey %d found in the binary tree.\n", key);
-    } else {
-        printf("\nKey %d not found in the binary tree.\n", key);
-    }
-
-    // Delete a node
-    root = deleteNode(root, 4);
-    printf("Inorder traversal after deleting 4: ");
-    inorder(root);
-    printf("\n");
 
     // Free the memory
     freeTree(root);
+
     return 0;
 }
